@@ -2,186 +2,71 @@
 <html lang="en">
 
 <head>
-  <title> Farm - Help | Sign Up</title>
-  <link rel = 'stylesheet' href="login.css">
-  <link rel="stylesheet" type="text/css" href="Style/menu.css" />
-  <link rel="stylesheet" type="text/css" href="Style/content.css" />
-  <link rel="stylesheet" href="Style/SignUp.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=K2D:wght@100&display=swap" rel="stylesheet" />
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <title>Farm Help | Animals</title>
+    <link rel = 'stylesheet' href="login.css">
+    <link rel="stylesheet" type="text/css" href="Style/content.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@100&display=swap" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
 </head>
 
 <body>
-  <div id="main">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-    <div id="menu">
-      <div class="navbar">
-        <div class="navbar-inner">
-          <a class="brand" href="index.html" style="border-right: none;">Farm Help</a>
+    <div id="main">
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <div id="menu">
+            <?php include 'navBar.php'; ?>
         </div>
-      </div>
-    </div>
 
-    <div id="content">
-      <div id="signUpPage">
-        <h1>Create An Account</h1>
-        <form method="POST">
-          <div class="signup-box">
-            <div class="left-box">
-              <h1> Basic Details</h1>
-              <input type="text" name="firstName" placeholder="First Name" required>
-              <input type="text" name="lastName" placeholder="Last Name" required>
-              <input type="email" name="email" placeholder="Email" required>
-              <input type="password" name="password" placeholder="Create Password" required>
-              <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
-              <div class="checkbox">
-                <input type="checkbox" id="terms" required>
-                <label for="terms"> I accept the terms and conditions.</label>
-              </div>
+        <div id="content">
+            <div id="search">
+                <form action="" method="get">
+                    <input type="text" name="query" placeholder="Search">
+                    <button class="btn btn-primary" type="submit">Go</button>
+                </form>
             </div>
 
+        </div>
 
-          </div>
-          <button class="btn-primary" name="submit" type="submit"> Create! <span> &#x27f6; </span></button>
-        </form>
-        <p class="signUpCompany">Signing up as a company? <a href="signUpCompany.php">Company Sign Up</a></p>
-        <p class="login">Already have an account? <a href="login.php">Login Now</a></p>
-      </div>
+        <div id=" content">
+            <div id="Animals">
+                <h2> Animals </h2>
+                <?php
+                $hostName="sql200.infinityfree.com";
+                $userName="if0_34480540";
+                $password="Kingjon10@";
+                $databaseName="epiz_33784251_cs5071_project";
+                $connection=mysqli_connect($hostName,$userName,$password,$databaseName);
+
+                //Checkifasearchquerywassubmitted
+                if(isset($_GET["query"])){
+                $search_query=$_GET["query"];
+
+                //requestbasedonsearchquery
+                $query="SELECT*FROManimalsWHEREAnimal_idLIKE'%$search_query%'ORAnimal_typeLIKE'%$search_query%'ORAnimal_gendarLIKE'%$search_query%'";
+                }else{
+                //elseshowall
+                $query="SELECT*FROManimal";
+                }
+
+                $result=mysqli_query($connection,$query);
+
+                while($row=mysqli_fetch_assoc($result)){
+                echo"Name:".$row["Animal_id"]."".$row["Animal_Type"]."<br>";
+                echo"Animals:".$row["Animal_id"]."<br>";
+                echo"<a href = 'profilePage.php?userid=".$row["Animal_id"]."'>ViewProfile</a>";
+                echo"<br><br>";
+                }
+
+                //Closethedatabaseconnection
+                mysqli_close($connection);
+                ?>
+            </div>
+
+        </div>
 
     </div>
-  </div>
-  <?php
-  $dbhost = "sql109.epizy.com";
-  $dbuser = "epiz_33784251";
-  $dbpass = "XzX7r5XomWU";
-  $dbname = "epiz_33784251_cs4116";
-
-  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-  if (mysqli_connect_errno()) {
-    die('Could not connect: ' . mysqli_connect_error());
-  }
-
-  if (isset($_POST['submit'])) {
-
-    //information for user
-    $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
-    $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $confirmPassword = mysqli_real_escape_string($conn, $_POST['confirmPassword']);
-    //information for employment_history
-    $employmentId = mysqli_real_escape_string($conn, $_POST['employment_id']);
-    $companyId = mysqli_real_escape_string($conn, $_POST['company_id']);
-    $company = mysqli_real_escape_string($conn, $_POST['company']);
-    $position = mysqli_real_escape_string($conn, $_POST['position']);
-    $employment_start_date = mysqli_real_escape_string($conn, $_POST['employment_start_date']);
-    $employment_end_date = mysqli_real_escape_string($conn, $_POST['employment_end_date']);
-    //information for education_history
-    $school = mysqli_real_escape_string($conn, $_POST['school']);
-    $course = mysqli_real_escape_string($conn, $_POST['course']);
-    $education_start_date = mysqli_real_escape_string($conn, $_POST['education_start_date']);
-    $education_end_date = mysqli_real_escape_string($conn, $_POST['education_end_date']);
-
-    //check if the email exists in the users database
-    $query = "SELECT * FROM users WHERE email = '$email'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) > 0) {
-      // The email already exists in the database
-      echo "An account with this email already exists";
-      exit();
-    }
-
-    // Check if passwords match
-    if ($password != $confirmPassword) {
-      echo "Error: Passwords do not match";
-      exit();
-    }
-
-    // Check password length
-    if (strlen($password) < 8) {
-      echo "Error: Password must be at least 8 characters long";
-      exit();
-    }
-
-    // Start transaction
-    mysqli_begin_transaction($conn);
-
-    // Insert into users table
-    $query1 = "INSERT INTO users (firstName, lastName, email, company, password) VALUES ('$firstName', '$lastName', '$email', '$company', '$password')";
-    if (!mysqli_query($conn, $query1)) {
-      echo "Error: " . $query1 . "<br>" . mysqli_error($conn);
-      mysqli_rollback($conn);
-      exit();
-    }
-
-    $queryId = "SELECT * FROM users WHERE email = '$email'";
-    $resultId = mysqli_query($conn, $queryId);
-    $row = mysqli_fetch_assoc($resultId);
-    $user_id = $row['user_id'];
-
-    // Insert into employment_history table
-    $query2 = "INSERT INTO employment_history (employment_id, user_id, company_id, company, position, start_date, end_date) VALUES (null, '$user_id', '$companyId', '$company', '$position', '$employment_start_date', '$employment_end_date')";
-    if (!mysqli_query($conn, $query2)) {
-      echo "Error: " . $query2 . "<br>" . mysqli_error($conn);
-      mysqli_rollback($conn);
-      exit();
-    }
-
-    // Insert into education_history table
-    $query3 = "INSERT INTO education_history (course_id, user_id, school, course, start_date, end_date) VALUES ('$courseId', '$user_id', '$school', '$course', '$education_start_date', '$education_end_date')";
-    if (!mysqli_query($conn, $query3)) {
-      echo "Error: " . $query3 . "<br>" . mysqli_error($conn);
-      mysqli_rollback($conn);
-      exit();
-    }
-
-    // Commit transaction
-    mysqli_commit($conn);
-
-    echo "New record created successfully";
-
-    header("Location: login.php");
-  }
-  ?>
 </body>
 
-</html><script>
-(function() {
-  var ws = new WebSocket('ws://' + window.location.host + '/jb-server-page?reloadServiceClientId=5');
-  ws.onmessage = function (msg) {
-      if (msg.data === 'reload') {
-          window.location.reload();
-      }
-      if (msg.data.startsWith('update-css ')) {
-          var messageId = msg.data.substring(11);
-          var links = document.getElementsByTagName('link');
-          for (var i = 0; i < links.length; i++) {
-              var link = links[i];
-              if (link.rel !== 'stylesheet') continue;
-              var clonedLink = link.cloneNode(true);
-              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
-              if (newHref !== link.href) {
-                clonedLink.href = newHref;
-              }
-              else {
-                var indexOfQuest = newHref.indexOf('?');
-                if (indexOfQuest >= 0) {
-                  // to support ?foo#hash 
-                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' + 
-                                    newHref.substring(indexOfQuest + 1);
-                }
-                else {
-                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
-                }
-              }
-              link.replaceWith(clonedLink);
-          }
-      }
-  };
-})();
-</script>
+</html>
