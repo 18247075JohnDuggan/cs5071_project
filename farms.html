@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Farm-Help | Farm Page</title>
+    <link rel="stylesheet" href ='login.css'/>
+    <link rel="stylesheet" type="text/css" href="Style/content.css" />
+    <link rel="stylesheet" type="text/css" href="Style/profilePage.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@100&display=swap" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+    <div id="main">
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <?php
+        $hostName="sql200.infinityfree.com";
+        $userName="if0_34480540";
+        $password="Kingjon10@";
+        $databaseName="epiz_33784251_cs5071_project";
+        $connection=mysqli_connect($hostName,$userName,$password,$databaseName);
+
+        // get Farm
+        if (isset($_GET['Farm'])) {
+            $Farm = $_GET['Farm'];
+            $FarmDetails = getFarmDetails($connection, $Farm);
+            $_POST['companyDetails'] = $companyDetails;
+        } else {
+            session_start();
+            $Farm = $_SESSION['Farm'];
+            $FarmDetails = getFarmDetails($connection, $Farm);
+            $_POST['FarmDetails'] = $FarmDetails;
+        }
+        mysqli_close($connection);
+        ?>
+        <div id="menu">
+            <?php include 'navBar.php'; ?>
+        </div>
+
+        <div id="content">
+            <div id="profilePage">
+                <img id="userProfilePicture" src="assets/profilePicture.svg" alt="user avatar" />
+                <div id="header">
+                    <h2><?php echo $_POST['FarmDetails']["Farm"]; ?></h2>
+
+                </div>
+                <div id="body">
+                    <div id="left">
+                        <h3>Users</h3>
+                        <?php
+                        $Farm = $_POST['FarmDetails']["Farm"];
+                        $sql = "SELECT * FROM users WHERE company = '$Farms'";
+                        $connection = mysqli_connect($hostName, $userName, $password, $databaseName);
+                        $result = mysqli_query($connection, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<p>";
+                                echo "Name: " . $row["User_id"] . " " . $row["Aniaml_ID"] . "<br>";
+
+                            }
+                        } else {
+                            echo "No Users :(";
+                        }
+                        mysqli_close($connection);
+                        ?>
+                    </div>
+
+
+
+
+
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
