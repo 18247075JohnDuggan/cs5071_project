@@ -1,0 +1,35 @@
+#login-box {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #login-box h2 {
+    text-align: center;
+    margin-top: 0;
+    color: white;
+  }
+  div#loginPage {
+    margin: 5em;
+    height: fit-content;
+    padding: 1em; 
+}
+#loginPage a#link {
+    color: #ffff;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+
+#loginPage button {
+    background-image: linear-gradient(to bottom,#3CABC3,#3497ad);
+    background-color: #3696ac;
+    font-size: 1em;
+    padding: 1em;
+    margin: auto;
+}

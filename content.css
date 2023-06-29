@@ -1,0 +1,31 @@
+html, div#main {
+    margin: 0px;
+    background-color: #D9D9D9;
+}
+a, p, h1, h2, h3, h4, h5, h6, label {
+    font-family: 'K2D', sans-serif !important;
+}
+div.navbar-inner a.brand {
+    font-weight: bolder !important;
+}
+
+div#content {
+    background-color: #BDBDBD;
+    margin: 5em;
+    margin-top: 10em;
+    border-radius: 1em;
+     width: auto;
+    height: fit-content;
+    padding: 1em;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 20em;
+}
+
+div#content .btn-primary, div#content div#adminControls .btn-primary {
+    background-image: linear-gradient(to bottom,#3CABC3,#3497ad);
+    background-color: #3696ac;
+    font-size: 1.5em;
+    padding: 1em;
+}
