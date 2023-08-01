@@ -2,7 +2,7 @@
     "name": "jddug/jddug",
     "description": "project",
     "type": "project",
-    "license": proprietary,
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
             "Jddug\\Jddug\\": "src/"
