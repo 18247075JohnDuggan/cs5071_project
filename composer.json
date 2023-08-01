@@ -1,9 +1,14 @@
 {
     "name": "jddug/jddug",
-    "description": "Project for CS5071/81",
+    "description": "project",
+    "type": "project",
     "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Jddug\\Jddug\\": "src/"
+        }
+    },
     "require": {
         "php": ">=8.2",
         "another-vendor/package": "1.*"
     }
-}
