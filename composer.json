@@ -1,6 +1,7 @@
 {
     "name": "jddug/jddug",
     "description": "Project for CS5071/81",
+    "license": "proprietary",
     "require": {
         "php": ">=8.2",
         "another-vendor/package": "1.*"
