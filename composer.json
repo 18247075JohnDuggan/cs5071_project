@@ -1,5 +1,8 @@
 {
-  "require": {
-    "vendor/package-name": "^2.0"
-  }
+    "name": "jddug/jddug",
+    "description": "Project for CS5071/81",
+    "require": {
+        "php": ">=8.2",
+        "another-vendor/package": "1.*"
+    }
 }
