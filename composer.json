@@ -10,5 +10,24 @@
     },
     "require": {
         "php": ">=8.2",
-        "another-vendor/package": "1.*"
+        "monolog/monolog": "^2.0"
     }
+
+{
+    "name": "jddug/jddug",
+    "description": "Project for cs5081",
+    "type": "project",
+    "license": "\"proprietary\"",
+    "autoload": {
+        "psr-4": {
+            "Jddug\\Jddug\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JonDugg"
+        }
+    ],
+    "require": {"php": ">=8.2",
+        "monolog/monolog": "^2.0"}
+}    
